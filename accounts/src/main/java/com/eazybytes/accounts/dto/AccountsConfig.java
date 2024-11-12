@@ -1,5 +1,6 @@
 package com.eazybytes.accounts.dto;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -15,5 +16,10 @@ public class AccountsConfig {
 
     private HashMap<String, String> contact ;
 
+    @PostConstruct
+    public void post(){
+
+        System.out.println("Message = " + message);
+    }
 
 }
