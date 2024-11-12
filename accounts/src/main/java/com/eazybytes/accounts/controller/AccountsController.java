@@ -1,6 +1,7 @@
 package com.eazybytes.accounts.controller;
 
 import com.eazybytes.accounts.constants.AccountsConstants;
+import com.eazybytes.accounts.dto.AccountsConfig;
 import com.eazybytes.accounts.dto.CustomerDto;
 import com.eazybytes.accounts.dto.ErrorResponseDto;
 import com.eazybytes.accounts.dto.ResponseDto;
@@ -162,5 +163,9 @@ public class AccountsController {
         }
     }
 
+    @PutMapping("/config")
+    public AccountsConfig fetchConfig() {
+         return new AccountsConfig();
+    }
 
 }
