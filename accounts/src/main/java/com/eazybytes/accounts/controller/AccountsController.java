@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -163,9 +164,12 @@ public class AccountsController {
         }
     }
 
-    @PutMapping("/config")
+    @Autowired
+    private AccountsConfig config ;
+
+    @GetMapping("/config")
     public AccountsConfig fetchConfig() {
-         return new AccountsConfig();
+         return config;
     }
 
 }
