@@ -14,9 +14,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
-accounts:
-  message: "Hello test message"
-  contact:
-    name: "Atishek"
-    email: "a@b.com"
