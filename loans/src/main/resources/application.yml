@@ -4,7 +4,7 @@ spring:
   application:
     name: loans
   config:
-    imports: "configserver:http://localhost:8072/"
+    import: "optional:configserver:http://localhost:8072/"
   profiles:
     active: prod
   datasource:
@@ -20,3 +20,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
