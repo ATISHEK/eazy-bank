@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e440bfb7-01c3-46bb-b808-cb79bfe0f359" name="Changes" comment="Added services as service discovery clients">
-      <change afterPath="$PROJECT_DIR$/../accounts/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,17 +47,17 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.LoansApplication.executor": "Run",
-    "Maven.loans [clean,install].executor": "Run",
-    "Maven.loans [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/develop-0.1",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Personal Drive/Study/perosnal projects/eazy-bank/loans"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.LoansApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.loans [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.loans [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/develop-0.1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Personal Drive/Study/perosnal projects/eazy-bank/loans&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install" />
