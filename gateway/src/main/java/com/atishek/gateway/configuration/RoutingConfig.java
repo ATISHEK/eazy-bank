@@ -13,12 +13,12 @@ public class RoutingConfig {
 
         return builder.routes().
                 route(p -> p
-                        .path("/api/accounts/**")
+                        .path("/api/atishek/accounts/**")
                         .filters(f -> f.rewritePath("/api/accounts/(?<segment>.*)", "/${segment}"))
                         .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p.
-                        path("/api/loans/**")
+                        path("/api/atishek/loans/**")
                         .filters(f -> f.rewritePath("/api/loanss/?<segment>.*", "/${segment}"))
                         .uri("lb://LOANS"))
                 .build();
