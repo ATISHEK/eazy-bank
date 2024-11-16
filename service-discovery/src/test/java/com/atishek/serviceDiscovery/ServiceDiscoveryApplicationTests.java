@@ -1,4 +1,4 @@
-package com.example.service_discovery;
+package com.atishek.serviceDiscovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

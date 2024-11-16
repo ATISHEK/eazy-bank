@@ -1,4 +1,4 @@
-package com.example.service_discovery;
+package com.atishek.serviceDiscovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
