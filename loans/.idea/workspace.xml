@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e440bfb7-01c3-46bb-b808-cb79bfe0f359" name="Changes" comment="Added services as service discovery clients">
+    <list default="true" id="e440bfb7-01c3-46bb-b808-cb79bfe0f359" name="Changes" comment="Renamed package for uniformity.">
       <change beforePath="$PROJECT_DIR$/../accounts/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../accounts/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -47,17 +47,19 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LoansApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.loans [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.loans [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/develop-0.1&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Personal Drive/Study/perosnal projects/eazy-bank/loans&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LoansApplication.executor": "Run",
+    "Application.com.atishek.loans.LoansApplication.executor": "Run",
+    "Maven.loans [clean,install].executor": "Run",
+    "Maven.loans [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "feature/develop-0.1",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Personal Drive/Study/perosnal projects/eazy-bank/loans"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install" />
@@ -65,12 +67,12 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="LoansApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.eazybytes.loans.LoansApplication" />
+    <configuration name="LoansApplication" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.atishek.loans.LoansApplication" />
       <module name="loans" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.eazybytes.loans.*" />
+          <option name="PATTERN" value="com.atishek.loans.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,11 +103,20 @@
       <option name="project" value="LOCAL" />
       <updated>1731563734901</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Renamed package for uniformity.">
+      <option name="closed" value="true" />
+      <created>1731725410052</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731725410052</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added services as service discovery clients" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added services as service discovery clients" />
+    <MESSAGE value="Renamed package for uniformity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed package for uniformity." />
   </component>
 </project>
