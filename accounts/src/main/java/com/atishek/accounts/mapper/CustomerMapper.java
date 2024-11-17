@@ -1,5 +1,6 @@
 package com.atishek.accounts.mapper;
 
+import com.atishek.accounts.dto.CustomerDetailsDto;
 import com.atishek.accounts.dto.CustomerDto;
 import com.atishek.accounts.entity.Customer;
 
@@ -17,6 +18,13 @@ public class CustomerMapper {
         customer.setEmail(customerDto.getEmail());
         customer.setMobileNumber(customerDto.getMobileNumber());
         return customer;
+    }
+
+    public static CustomerDetailsDto mapToCustomerDetailsDto(Customer customer, CustomerDetailsDto customerDetailsDto) {
+        customerDetailsDto.setName(customer.getName());
+        customerDetailsDto.setEmail(customer.getEmail());
+        customerDetailsDto.setMobileNumber(customer.getMobileNumber());
+        return customerDetailsDto;
     }
 
 }
