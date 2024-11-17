@@ -14,12 +14,12 @@ public class RoutingConfig {
         return builder.routes().
                 route(p -> p
                         .path("/api/atishek/accounts/**")
-                        .filters(f -> f.rewritePath("/api/accounts/(?<segment>.*)", "/${segment}"))
+                        .filters(f -> f.rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}"))
                         .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p.
                         path("/api/atishek/loans/**")
-                        .filters(f -> f.rewritePath("/api/loanss/?<segment>.*", "/${segment}"))
+                        .filters(f -> f.rewritePath("/api/atishek/loans/?<segment>.*", "/${segment}"))
                         .uri("lb://LOANS"))
                 .build();
     }
