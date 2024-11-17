@@ -1,16 +1,51 @@
 server:
   port: 9000
 spring:
+  application:
+    name: cards
+  config:
+    import: "optional:configserver:http://localhost:8072/"
+  profiles:
+    active: prod
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://localhost:3308/cardsdb
+    username: root
+    password: root
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
+    sql:
+      inti:
+        mode: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: 'Cards'
+    description: 'This is the cards service'
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: "http://localhost:8070/eureka"
+  instance:
+    preferIpAddress: true
+
+
+
+
+
