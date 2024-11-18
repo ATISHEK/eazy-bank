@@ -31,7 +31,10 @@ management:
       exposure:
         include: '*'
 
-
-
-
-
+resilience4j.circuitbreaker:
+    configs:
+      default:
+        failureRateThreshold: 50
+        slidingWindowSize: 10
+        waitDurationInOpenState: 10000
+        permittedNumberOfCallsInHalfOpenState: 2

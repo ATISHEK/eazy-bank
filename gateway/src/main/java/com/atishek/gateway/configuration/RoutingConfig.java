@@ -14,13 +14,24 @@ public class RoutingConfig {
         return builder.routes().
                 route(p -> p
                         .path("/api/atishek/accounts/**")
-                        .filters(f -> f.rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}"))
+                        .filters(f -> f
+                                .rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}")
+                                .circuitBreaker(config -> config
+                                                .setName("gatewayAccountsCircuitBreaker")
+                                                .setFallbackUri("forward:/contactSupport")))
                         .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p.
                         path("/api/atishek/loans/**")
-                        .filters(f -> f.rewritePath("/api/atishek/loans/?<segment>.*", "/${segment}"))
+                        .filters(f -> f
+                                .rewritePath("/api/atishek/loans/?<segment>.*", "/${segment}")
+                               )
                         .uri("lb://LOANS"))
+                .route(p -> p.path("/api/atishek/cards/**")
+                                .filters(f -> f.rewritePath("/api/atishek/cards/?<segment>.*", "/${segment}")
+                                        .circuitBreaker(cb -> cb.setName("GatewayCardsCircuitBreaker")))
+                                .uri("lb://CARDS")
+                )
                 .build();
     }
 
