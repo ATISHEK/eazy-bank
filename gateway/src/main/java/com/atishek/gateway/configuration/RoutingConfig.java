@@ -15,10 +15,10 @@ public class RoutingConfig {
                 route(p -> p
                         .path("/api/atishek/accounts/**")
                         .filters(f -> f
-                                .rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}")
-                                .circuitBreaker(config -> config
-                                                .setName("gatewayAccountsCircuitBreaker")
-                                                .setFallbackUri("forward:/contactSupport")))
+                                .rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}"))
+//                                .circuitBreaker(config -> config
+//                                                .setName("gatewayAccountsCircuitBreaker")
+//                                                .setFallbackUri("forward:/contactSupport")))
                         .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p.

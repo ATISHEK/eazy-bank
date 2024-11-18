@@ -21,6 +21,10 @@ spring:
     sql:
       inti:
         mode: always
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 
 management:
   endpoints:
@@ -29,6 +33,8 @@ management:
         include: '*'
   endpoint:
     shutdown:
+      enabled: true
+    circuitbreaker:
       enabled: true
 
 endpoints:
@@ -54,5 +60,16 @@ eureka:
   instance:
     preferIpAddress: true
 
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 2
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
 
-
+logging:
+  level:
+    org.springframework.cloud.openfeign: DEBUG
+    io.github.resilience4j: DEBUG
+    
