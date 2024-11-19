@@ -6,6 +6,7 @@ import com.atishek.accounts.dto.CustomerDto;
 import com.atishek.accounts.dto.ErrorResponseDto;
 import com.atishek.accounts.dto.ResponseDto;
 import com.atishek.accounts.service.IAccountsService;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 
 
 /**
@@ -40,6 +42,9 @@ import org.springframework.beans.factory.annotation.Value;
 public class AccountsController {
 
     private IAccountsService iAccountsService;
+
+    @Autowired
+    private Environment environment;
 
     @Value("${build.version}")
     private String buildVersion;
@@ -205,6 +210,20 @@ public class AccountsController {
 
     public ResponseEntity<String> getBuildInfoFallback(Exception e){
         return ResponseEntity.ok().body("This is a fallback response: version 0.9") ;
+    }
+
+    @RateLimiter(name= "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
+    @GetMapping("/java-version")
+    public ResponseEntity<String> getJavaVersion() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(environment.getProperty("JAVA_HOME"));
+    }
+
+    public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Java 17");
     }
 
 }

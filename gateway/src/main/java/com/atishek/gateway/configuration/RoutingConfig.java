@@ -1,11 +1,14 @@
 package com.atishek.gateway.configuration;
 
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
@@ -39,10 +42,23 @@ public class RoutingConfig {
                         .uri("lb://LOANS"))
                 .route(p -> p.path("/api/atishek/cards/**")
                                 .filters(f -> f.rewritePath("/api/atishek/cards/?<segment>.*", "/${segment}")
-                                        .circuitBreaker(cb -> cb.setName("GatewayCardsCircuitBreaker")))
+                                        .requestRateLimiter(config -> config
+                                                .setRateLimiter(redisRateLimiter())
+                                                .setKeyResolver(getKeyResolver())))
                                 .uri("lb://CARDS")
                 )
                 .build();
+    }
+
+    @Bean
+    public RedisRateLimiter redisRateLimiter(){
+        return new RedisRateLimiter(1,1, 1);
+    }
+
+    @Bean
+    public KeyResolver getKeyResolver(){
+        return exchange -> Mono.justOrEmpty(exchange.getRequest().getHeaders().getFirst("user"))
+                .defaultIfEmpty("anonymous");
     }
 
 }
