@@ -204,7 +204,7 @@ public class AccountsController {
     }
 
     public ResponseEntity<String> getBuildInfoFallback(Exception e){
-        return ResponseEntity.ok().body("This is a fallback response") ;
+        return ResponseEntity.ok().body("This is a fallback response: version 0.9") ;
     }
 
 }
