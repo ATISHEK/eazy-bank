@@ -4,6 +4,10 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+
+import java.time.Duration;
 
 @Configuration
 public class RoutingConfig {
@@ -16,15 +20,21 @@ public class RoutingConfig {
                         .path("/api/atishek/accounts/**")
                         .filters(f -> f
                                 .rewritePath("/api/atishek/accounts/(?<segment>.*)", "/${segment}"))
-//                                .circuitBreaker(config -> config
-//                                                .setName("gatewayAccountsCircuitBreaker")
-//                                                .setFallbackUri("forward:/contactSupport")))
-                        .uri("lb://ACCOUNTS")
+/*   uncomment if circuit breaker config is removed from accounts service .
+                             .circuitBreaker(config -> config
+                                                .setName("gatewayAccountsCircuitBreaker")
+                                                .setFallbackUri("forward:/contactSupport")))
+  */                      .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p.
                         path("/api/atishek/loans/**")
                         .filters(f -> f
                                 .rewritePath("/api/atishek/loans/?<segment>.*", "/${segment}")
+                                .retry(config -> config
+                                        .setRetries(3)
+                                        .setMethods(HttpMethod.GET)
+                                        .setStatuses(HttpStatus.valueOf(500), HttpStatus.valueOf(503))
+                                        .setBackoff(Duration.ofMillis(500), Duration.ofSeconds(2), 2, true))
                                )
                         .uri("lb://LOANS"))
                 .route(p -> p.path("/api/atishek/cards/**")
