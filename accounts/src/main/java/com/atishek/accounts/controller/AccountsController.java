@@ -6,6 +6,7 @@ import com.atishek.accounts.dto.CustomerDto;
 import com.atishek.accounts.dto.ErrorResponseDto;
 import com.atishek.accounts.dto.ResponseDto;
 import com.atishek.accounts.service.IAccountsService;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,6 +22,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
+
 
 /**
  * @author Eazy Bytes
@@ -38,6 +41,8 @@ public class AccountsController {
 
     private IAccountsService iAccountsService;
 
+    @Value("${build.version}")
+    private String buildVersion;
     @Operation(
             summary = "Create Account REST API",
             description = "REST API to create new Customer &  Account inside EazyBank"
@@ -170,6 +175,36 @@ public class AccountsController {
     @GetMapping("/config")
     public AccountsConfig fetchConfig() {
          return config;
+    }
+
+    @Operation(
+            summary = "Get Build information",
+            description = "Get Build information that is deployed into accounts microservice"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP Status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "HTTP Status Internal Server Error",
+                    content = @Content(
+                            schema = @Schema(implementation = ErrorResponseDto.class)
+                    )
+            )
+    }
+    )
+    @Retry(name = "getBuildInfo",fallbackMethod = "getBuildInfoFallback")
+    @GetMapping("/build-info")
+    public ResponseEntity<String> getBuildInfo() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(buildVersion);
+    }
+
+    public ResponseEntity<String> getBuildInfoFallback(Exception e){
+        return ResponseEntity.ok().body("This is a fallback response") ;
     }
 
 }
